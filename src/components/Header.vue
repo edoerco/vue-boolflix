@@ -3,8 +3,8 @@
     <div class="container">
       <h1>BOOLFLIX</h1>
       <div class="search">
-        <input type="text" placeholder="Cerca Serie" name="" id="">
-        <button>Search</button>
+        <input type="text" placeholder="Cerca Serie" v-model="inputText" name="" id="">
+        <button @click="$emit('valore', inputText)" >Search</button>
       </div>
     </div>
   </header>
@@ -13,6 +13,11 @@
 <script>
 export default {
   name: 'Header',
+  data() {
+    return {
+      inputText:'',
+    }
+  }
   
 }
 </script>

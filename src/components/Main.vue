@@ -1,42 +1,20 @@
 <template>
   <main> <!-- sfondo generale -->
       <div class="container"> <!-- contenitore delle rispettive 'carte' -->
-        <!-- <div class="card" v-for="(info, index) in movieList" :key="index">
+        <div class="card" v-for="(info, index) in movieList" :key="index">
             <h3>{{info.title}}</h3>
             <h5>{{info.original_title}}</h5>
             <p>{{info.original_language}}</p>
             <p>{{info.vote_average}}</p>
-        </div> -->
+        </div>
       </div>
   </main>
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
     name: 'Main',
-    data() {
-        return {
-            APIUrl: 'https://api.themoviedb.org/3/search/movie?api_key=6c704469f7f432852b78e2c720d30f40&query=rick',
-            movieList:[],
-        }
-    },
-
-    created() {
-        this.getMoviueList()
-    },
-
-    methods: {
-        getMoviueList(){
-            axios
-                .get(this.APIUrl)
-                .then( res => {
-                    this.movieList = res.data.results
-                    console.log(this.movieList)
-                })
-        }
-    },
+    props: ['movieList'],
 }
 
 
@@ -61,9 +39,9 @@ main {
 
         .card {
             height: 300px;
-            width: 200px;
+            width: calc(100% / 5 - 80px);
             background-color: #fff;
-            margin: 10px
+            margin: 40px
         }
     }
 }
