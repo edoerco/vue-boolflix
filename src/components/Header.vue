@@ -4,7 +4,7 @@
       <h1>BOOLFLIX</h1>
       <div class="search">
         <input type="text" placeholder="Cerca Serie" name="" id="">
-        <button>Cerca</button>
+        <button>Search</button>
       </div>
     </div>
   </header>
@@ -36,6 +36,23 @@ header {
 
     h1 {
       color: $secundary
+    }
+
+    .search input {
+      margin-right: 5px;
+      padding: 2px;
+      outline: none;
+    }
+
+    .search button {
+      background-color: $secundary;
+      border: 1px solid $secundary;
+      color: white;
+      padding: 2px;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }

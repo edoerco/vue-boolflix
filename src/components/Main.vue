@@ -1,17 +1,46 @@
 <template>
   <main> <!-- sfondo generale -->
       <div class="container"> <!-- contenitore delle rispettive 'carte' -->
-        <div class="card"> <!-- card che cicleremo per farle ripetere a video -->
-        </div>
+        <!-- <div class="card" v-for="(info, index) in movieList" :key="index">
+            <h3>{{info.title}}</h3>
+            <h5>{{info.original_title}}</h5>
+            <p>{{info.original_language}}</p>
+            <p>{{info.vote_average}}</p>
+        </div> -->
       </div>
   </main>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-  name: 'Main',
-  
+    name: 'Main',
+    data() {
+        return {
+            APIUrl: 'https://api.themoviedb.org/3/search/movie?api_key=6c704469f7f432852b78e2c720d30f40&query=rick',
+            movieList:[],
+        }
+    },
+
+    created() {
+        this.getMoviueList()
+    },
+
+    methods: {
+        getMoviueList(){
+            axios
+                .get(this.APIUrl)
+                .then( res => {
+                    this.movieList = res.data.results
+                    console.log(this.movieList)
+                })
+        }
+    },
 }
+
+
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -20,7 +49,7 @@ export default {
 
 main {
     width: 100%;
-    height: 800px; // altezza momentanea, rimuoverla a fine lavoro
+    min-height: 600px; // altezza momentanea, rimuoverla a fine lavoro
     background-color: $main-color;
 
     .container{
