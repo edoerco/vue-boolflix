@@ -3,7 +3,7 @@
     <div class="container">
       <h1>BOOLFLIX</h1>
       <div class="search">
-        <input type="text" placeholder="Cerca Serie" v-model="inputText" name="" id="">
+        <input type="text" placeholder="Cerca Serie" v-model="inputText" @keyup.enter="$emit('valore', inputText)">
         <button @click="$emit('valore', inputText)" >Search</button>
       </div>
     </div>
