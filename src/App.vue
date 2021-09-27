@@ -4,6 +4,7 @@
     <Header @valore="getQuery" />
     <!-- ' :movieList ' lo passo al main - movieList lo passo a App -->
     <Main :movieList="movieList" />
+    <Main :movieList="serieList" />
   </div>
 </template>
 
@@ -19,33 +20,47 @@ export default {
     Header,
     Main
   },
-   data() {
+  data() {
         return {
-          APIUrl: 'https://api.themoviedb.org/3/search/movie?api_key=6c704469f7f432852b78e2c720d30f40&query=', // trasformare la query
-          movieList:[],
+          APIUrl: 'https://api.themoviedb.org/3/search/',
+          movie: 'movie',
+          serie: 'tv',
+          apiKey: '?api_key=6c704469f7f432852b78e2c720d30f40',
+          urlQuery: '&query=',
           query:'',
+          movieList:[],
+          serieList: [],
         }
-    },
+  },
 
-    created() {
-        this.getMovieList()
-    },
+  // created() {
+  //       this.getMovieList()
+  // },
 
-    methods: {
+  methods: {
         getMovieList(){
           axios
-                .get(this.APIUrl + this.query)
+                .get(this.APIUrl + this.movie + this.apiKey + this.urlQuery + this.query)
                 .then( res => {
                   this.movieList = res.data.results
                     console.log(this.movieList)
+                })
+        },
+         getSerieList(){
+          axios
+                .get(this.APIUrl + this.serie + this.apiKey + this.urlQuery + this.query)
+                .then( res => {
+                  this.serieList = res.data.results
+                    console.log(this.serieList)
                 })
         },
 
         getQuery(text) {
           this.query = text;
           this.getMovieList()
+          this.getSerieList()
         },
-    },
+  },
 }
 </script>
 
