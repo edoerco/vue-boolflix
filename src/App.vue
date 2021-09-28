@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div id="app">
     <!-- @valore è il nome che passiamo dall'header - getQuery è il metodo per pescare il valore -->
     <Header @valore="getQuery" />
     <!-- ' :movieList ' lo passo al main - movieList lo passo a App -->
-    <Main :movieList="movieList" />
-    <Main :movieList="serieList" />
+    <Main :movieList="movieList" :serieList="serieList"  />
+    <!-- <Main /> -->
   </div>
 </template>
 
@@ -32,10 +32,6 @@ export default {
           serieList: [],
         }
   },
-
-  // created() {
-  //       this.getMovieList()
-  // },
 
   methods: {
         getMovieList(){
@@ -66,5 +62,10 @@ export default {
 
 <style lang="scss">
 @import './style/general.scss';
+
+#app {
+  width: 100%;
+  height: 100vh;
+}
 
 </style>
